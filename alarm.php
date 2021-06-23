@@ -41,7 +41,7 @@
 		font-size: 30px;
 	}
 
-	p {
+	p .small {
 		font-family: "LiGothic", "FangSong", Arial, serif;
 		font-size: 20px;
 	}
@@ -55,6 +55,7 @@
 	 </STYLE>
 	 <script>
 	    var allowToPlayAudio = false;
+	    var btnToggleIdx = true;
 
 	    function startTime(){
 	      var today = new Date();
@@ -87,10 +88,25 @@
 		audio.play();       //  播放元素的音效
 	    }
 
-	    function btnStart() {
-		document.getElementById("btn-start").style.color = "grey";
-		allowToPlayAudio = true;
-		playAudio();
+	    function btnToggle() {
+		var btn = document.getElementById("btn1");
+		var audio = document.getElementById("ding");
+
+		if (btnToggleIdx == true) {
+		    audio.muted = false;
+		    btnToggleIdx = false;
+		    btn.style.color = 'grey';
+		    allowToPlayAudio = true;
+		    playAudio();
+		    btn.innerHTML = '-- 結束提醒 --';
+		} else  {
+		    audio.muted = true;
+		    btnToggleIdx = true;
+		    btn.disabled = false;
+		    btn.style.color = 'black';
+		    btn.innerHTML = '-- 開始禱告 --';
+		}
+
 	    }
 
 	  </script>
@@ -99,9 +115,11 @@
     <div class="content">
 	<div class="title"><H1>RPG 禱告-時間提醒工具</H1></div>
 	<div id="clock"></div>
-	<p>功能說明：每整分鐘敲鐘一次。</p>
-	<div class="title"><button class="btn" onClick="btnStart();" id="btn-start">-- 開始禱告 --</button></div>
+	<p class="small">功能說明：每整分鐘敲鐘一次。</p>
+	<div class="title"><button type="button" class="btn" onClick="btnToggle();" id="btn1">-- 開始禱告 --</button></div>
     </div>
-    <audio id="ding" src="ding.mp3"></audio>
+    <audio id="ding" muted>
+        <source src="ding.mp3" type="audio/mpeg">
+    </audio>
   </body>
 </html>
