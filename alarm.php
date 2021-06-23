@@ -1,6 +1,6 @@
 <html>
     <head>
-    	<title>RPG 禱告 - 時間提醒</title>
+    	<title>RPG 禱告-時間提醒工具</title>
 	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,18 +8,20 @@
 	<!--
 	#clock{
 	    color:white;
-	    font: 6em sans-serif;
+	    font: 4em sans-serif;
 	    background: black;
 	    margin: 5px;
 	    padding: 5px;
 	    border: solid gray 2px;
 	    border-radius: 10px;
-	    width:500px;
+	    width:340px;
+	    margin: auto;
 	    text-align:center;
 	 }
 	.content {
 		max-width: 500px;
 		margin: auto;
+		text-align:center;
         }
 	.title {
 		margin-top: 60px;
@@ -27,7 +29,7 @@
 	}
 	H1 {
 		font-family: "LiGothic", "FangSong", Arial, serif;
-		font-size: 40px;
+		font-size: 30px;
 	}
 
 	p {
@@ -86,9 +88,9 @@
     </head>
   <body onload="startTime()" style="background-color: F88A73;">
     <div class="content">
-	<div class="title"><H1>RPG 禱告 - 時間提醒</H1></div>
+	<div class="title"><H1>RPG 禱告-時間提醒工具</H1></div>
 	<div id="clock"></div>
-	<p>功能：每整分鐘敲鐘一次。</p>
+	<p>功能說明：每整分鐘敲鐘一次。</p>
 	<div class="title"><button class="btn" onClick="btnStart();" id="btn-start">-- 開始禱告 --</button></div>
     </div>
     <audio id="ding" src="ding.mp3"></audio>
