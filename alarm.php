@@ -15,6 +15,24 @@
 	</script>
 	<STYLE>
 	<!--
+
+	html, body {
+	  height: 100%;
+	  margin: 0;
+	}
+	body {
+	  background-color: F88A73;
+	  display: flex; /*使物件依序排列*/
+	  flex-direction: column; /*使物件垂直排列*/
+	}
+	.wrapper {
+	  flex-grow: 1; /*可佔滿垂直剩餘的空間*/
+	}
+	.footer {
+	    margin: auto;
+	    padding-bottom: 10px;
+	}
+
 	#clock{
 	    color:white;
 	    font: 4em sans-serif;
@@ -33,7 +51,7 @@
 		text-align:center;
         }
 	.title {
-		margin-top: 60px;
+                margin-top: 60px;
 		text-align: center;
 	}
 	H1 {
@@ -119,15 +137,20 @@
 
 	  </script>
     </head>
-  <body onload="startTime()" style="background-color: F88A73;">
-    <div class="content">
-	<div class="title"><H1>RPG 禱告-時間提醒工具</H1></div>
-	<div id="clock"></div>
-	<p class="small">功能說明：每整分鐘敲鐘一次。</p>
-	<div class="title"><button type="button" class="btn" onClick="btnToggle();" id="btn1">-- 開始禱告 --</button></div>
+  <body onload="startTime()">
+    <div class="wrapper">
+	<div class="content">
+	    <div class="title"><H1>RPG 禱告-時間提醒工具</H1></div>
+	    <div id="clock"></div>
+	    <p class="small">功能說明：每整分鐘敲鐘一次。</p>
+	    <div class="title"><button type="button" class="btn" onClick="btnToggle();" id="btn1">-- 開始禱告 --</button></div>
+	</div>
     </div>
     <audio id="ding" muted>
         <source src="ding.mp3" type="audio/mpeg">
     </audio>
+    <footer class="footer">
+	Copyright © 2021 ciwasiban 版權所有
+    </footer>
   </body>
 </html>
