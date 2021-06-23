@@ -51,6 +51,10 @@
 		font-size: 16px;
 	}
 
+        .red-ss {
+	    color: red;
+	}
+
 	-->
 	 </STYLE>
 	 <script>
@@ -65,11 +69,15 @@
 	      hh = checkTime(hh);
 	      mm = checkTime(mm);
 	      ss = checkTime(ss);
+
+	      if (ss == '00') {
+		  if (!btnToggleIdx)
+		      ss = '<span class="red-ss">' + ss + '</span>';
+		  playAudio();
+	      }
 	      document.getElementById('clock').innerHTML = hh + ":" + mm + ":" + ss;
+
 	      var timeoutId = setTimeout(startTime, 500);
-		if (ss == '00') {
-		    playAudio();
-                }
 	    }
 
 	    function checkTime(i){
