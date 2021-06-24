@@ -23,7 +23,7 @@
 	  margin: 0;
 	}
 	body {
-	  background-color: rgb(219,82,77, 0.9);
+	  background-color: #F88A73;
 	  display: flex; /*使物件依序排列*/
 	  flex-direction: column; /*使物件垂直排列*/
 	}
