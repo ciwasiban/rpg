@@ -15,13 +15,15 @@
 	</script>
 	<STYLE>
 	<!--
+	@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+	@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
 
 	html, body {
 	  height: 100%;
 	  margin: 0;
 	}
 	body {
-	  background-color: rgb(219,82,77, 0.9); 
+	  background-color: rgb(219,82,77, 0.9);
 	  display: flex; /*使物件依序排列*/
 	  flex-direction: column; /*使物件垂直排列*/
 	}
@@ -55,21 +57,21 @@
 		text-align: center;
 	}
 	H1 {
-		font-family: "LiGothic", "FangSong", Arial, serif;
+	        font-family: ‘Noto Sans TC’, sans-serif;
 		font-size: 30px;
+		font-weight: 800;
 	}
 
 	.small {
+	        font-family: ‘cwTeXYen’, sans-serif;
 		width:340px;
 		margin: auto;
 		padding-top: 8px;
 		text-align: left;
-		font-family: "LiGothic", "FangSong", Arial, serif;
-		font-size: 16px;
+		font-size: 18px;
 	}
 
 	.btn {
-		font-family: "LiGothic", "FangSong", Arial, serif;
 		font-size: 16px;
 	}
 
