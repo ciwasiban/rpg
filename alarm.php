@@ -59,9 +59,13 @@
 		font-size: 30px;
 	}
 
-	p .small {
+	.small {
+		width:340px;
+		margin: auto;
+		padding-top: 8px;
+		text-align: left;
 		font-family: "LiGothic", "FangSong", Arial, serif;
-		font-size: 20px;
+		font-size: 16px;
 	}
 
 	.btn {
@@ -142,7 +146,7 @@
 	<div class="content">
 	    <div class="title"><H1>RPG 禱告-時間提醒工具</H1></div>
 	    <div id="clock"></div>
-	    <p class="small">功能說明：每整分鐘敲鐘一次。</p>
+	    <p class="small">功能說明：<br/>每整分鐘鳴鐘一次提醒禱告者，以掌握調配自己禱告的時長。</p>
 	    <div class="title"><button type="button" class="btn" onClick="btnToggle();" id="btn1">-- 開始禱告 --</button></div>
 	</div>
     </div>
