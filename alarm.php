@@ -152,7 +152,7 @@
 	<div class="content">
 	    <div class="title"><H1>RPG 禱告-時間提醒工具</H1></div>
 	    <div id="clock"></div>
-	    <p class="small">功能說明：<br/>每整分鐘鳴鐘一次提醒禱告者來調整自己的禱告時長。</p>
+	    <p class="small">功能說明：<br/>每過一分鐘鳴鐘一次提醒禱告者來調整自己的禱告時長。</p>
 	    <div class="title"><button type="button" class="btn" onClick="btnToggle();" id="btn1">-- 開始禱告 --</button></div>
 	</div>
     </div>
