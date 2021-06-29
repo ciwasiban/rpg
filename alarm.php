@@ -104,7 +104,7 @@
 
 	    function clockColorChange(trigerFrom="") {
 	      if (!btnToggleIdx && trigerFrom == 'PlayAudio') {
-		  document.getElementById('clock').style.color = 'yellow';
+		  document.getElementById('clock').style.color = 'red';
 	          var timeoutId = setTimeout(clockColorChange, 1000);
 	      } else {
 		  document.getElementById('clock').style.color = 'white';
