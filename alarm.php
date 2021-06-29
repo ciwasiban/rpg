@@ -75,10 +75,6 @@
 		font-size: 16px;
 	}
 
-        .red-ss {
-	    color: red;
-	}
-
 	-->
 	 </STYLE>
 	 <script>
@@ -94,11 +90,6 @@
 	      mm = checkTime(mm);
 	      ss = checkTime(ss);
 
-	      if (ss == '00') {
-		  if (!btnToggleIdx)
-		      ss = '<span class="red-ss">' + ss + '</span>';
-		  playAudio();
-	      }
 	      document.getElementById('clock').innerHTML = hh + ":" + mm + ":" + ss;
 
 	      var timeoutId = setTimeout(startTime, 500);
@@ -111,13 +102,27 @@
 	      return i;
 	    }      
 
+	    function clockColorChange(trigerFrom="") {
+	      if (!btnToggleIdx && trigerFrom == 'PlayAudio') {
+		  document.getElementById('clock').style.color = 'yellow';
+	          var timeoutId = setTimeout(clockColorChange, 1000);
+	      } else {
+		  document.getElementById('clock').style.color = 'white';
+		  window.clearTimeout(setTimeout(clockColorChange, 1000));
+	      }
+	    }
+
 	    function playAudio() {
 		var audio = document.getElementById("ding");
 		if (!allowToPlayAudio) 
 		    return;
 		if(!audio) 
 		    return;  //  如果沒有按到對應的按鍵，則停止此函式
+
 		audio.play();       //  播放元素的音效
+		clockColorChange('PlayAudio');
+
+	        var timeoutId = setTimeout(playAudio, 60000);
 	    }
 
 	    function btnToggle() {
@@ -138,7 +143,6 @@
 		    btn.style.color = 'black';
 		    btn.innerHTML = '-- 開始禱告 --';
 		}
-
 	    }
 
 	  </script>
