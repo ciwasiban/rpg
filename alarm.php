@@ -105,10 +105,10 @@
 	    function clockColorChange(trigerFrom="") {
 	      if (!btnToggleIdx && trigerFrom == 'PlayAudio') {
 		  document.getElementById('clock').style.color = 'red';
-	          var timeoutId = setTimeout(clockColorChange, 1000);
+	          var timeoutId = setTimeout(clockColorChange, 700);
 	      } else {
 		  document.getElementById('clock').style.color = 'white';
-		  window.clearTimeout(setTimeout(clockColorChange, 1000));
+		  window.clearTimeout(setTimeout(clockColorChange, 700));
 	      }
 	    }
 
