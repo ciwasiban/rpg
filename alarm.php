@@ -1,61 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
     <head>
-    	<title>RPG 禱告-時間提醒工具</title>
-	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    	<title>RPG 禱告提醒工具v2</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-HJD5F7XB6H"></script>
-	<script>
-	    window.dataLayer = window.dataLayer || [];
-	    function gtag(){dataLayer.push(arguments);}
-	    gtag('js', new Date());
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>  
+	<script type="text/javascript">
+	$(document).ready(function(){
+  var audioPlayStatus = 0;
+  var countS = 1;
+  $("#session").html(countS);
+  var countB = 1;
+  $("#break").html(countB);
+  var pos = "RPG 禱告提醒時鐘";
+  var countLama;
+  var posLama;
+  var count;
+  $("#stats").html(pos);
+  var clock = $(".timer").FlipClock(0, {
+    countdown: false,
+    clockFace: 'MinuteCounter',
+    autoStart: false,
+    callbacks: {
+      interval: function(){
+        if (clock.getTime() == 0){
+          if (pos == "RPG 禱告提醒時鐘"){
+            clock.setTime(countB*60);
+            clock.start();
+            pos = "break";
+            $("#stats").html(pos);
+          } else if (pos == "break"){
+            clock.setTime(countS*60);
+            clock.start();
+            pos = "RPG 禱告提醒時鐘";
+            $("#stats").html(pos);
+          }
+        }
+      }
+    }
+  })
+  //SESSION
+  $("#sessInc").on("click", function(){
+    if ($("#session").html() > 0){
+      countS = parseInt($("#session").html());
+      countS+=1;
+      $("#session").html(countS);
+      //clock.setTime(countS*60);
+    }
+  });
+  $("#sessDec").on("click", function(){
+    if ($("#session").html() > 1){
+      countS = parseInt($("#session").html());
+      countS-=1;
+      $("#session").html(countS);
+      //clock.setTime(countS*60);
+    }
+  });
+  //BREAK
+  $("#breakInc").on("click", function(){
+    if ($("#break").html() > 0){
+      countB = parseInt($("#break").html());
+      countB+=1;
+      $("#break").html(countB);
+    }
+  });
+  $("#breakDec").on("click", function(){
+    if ($("#break").html() > 1){
+      countB = parseInt($("#break").html());
+      countB-=1;
+      $("#break").html(countB);
+    }
+  });
+  $("#start").on("click", function(){
+    if (count != countS || clock.getTime()==0){
+      //clock.setTime(countS*60);
+      pos="RPG 禱告中";
+      $("#stats").html(pos);
+    } else {
+      pos = posLama;
+      $("#stats").html(pos);
+    }
+    count = countS;
+    clock.start();
 
-	    gtag('config', 'G-HJD5F7XB6H');
+    audioPlayStatus = 1;
+    playAudio();
+  });
+  $("#stop").on("click", function(){
+    clock.stop();
+    countLama = clock.getTime();
+    posLama = $("#stats").html();
+    audioPlayStatus = 0;
+  });
+  $("#clear").on("click", function(){
+    clock.stop();
+    pos = "RPG 禱告提醒時鐘";
+    $("#stats").html(pos);
+    clock.setTime(0);
+    audioPlayStatus = 0;
+  });
+
+/** my alarm **/
+	    function playAudio() {
+		var audio = document.getElementById("ding");
+		console.log(audioPlayStatus);
+                if (audioPlayStatus == 1) {
+		    audio.muted = false;
+		    audio.play();       //  播放元素的音效
+		    //clockColorChange('PlayAudio');
+		} else {
+		    audio.muted = true;
+		    return;
+		}
+
+	        var timeoutId = setTimeout(playAudio, countS * 1000 * 60);
+
+	    }
+/** my alarm End **/
+
+
+
+});
 	</script>
-	<STYLE>
+	<STYLE type="text/css">
 	<!--
 	@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
 	@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+	@import url(https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.css);
+	@import url(https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css);
 
-	html, body {
-	  height: 100%;
-	  margin: 0;
-	}
-	body {
-	  background-color: #F88A73;
-	  display: flex; /*使物件依序排列*/
-	  flex-direction: column; /*使物件垂直排列*/
-	}
-	.wrapper {
-	  flex-grow: 1; /*可佔滿垂直剩餘的空間*/
-	}
-	.footer {
-	    margin: auto;
-	    padding-bottom: 10px;
-	}
+body {
+  background: url("bg.jpg") no-repeat center center fixed;
+  background-size: cover; 
+}
+  /*
+  background: url("") no-repeat center center fixed;
+  */
+.pomodoro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;  
+  padding-top: 15px;
+  padding-bottom: 25px;  
+  background: rgba(255,255,255,0.3);
+}
+p {
+  text-align: center;
+}
+.flip-clock-wrapper{
+  max-width: 460px;
+  margin: 3em auto 2em;
+  display: flex;
+  justify-content: center;
+}
+.col-md-4{
+  display: flex;
+  justify-content: center;
+}
+.col-md-2{
+  display: flex;
+  justify-content: center;
+  height: 34px;
+  align-items: center;
+}
+.counter{
+  display: flex;
+  justify-content: center;
+}
+.clock{
+  margin-top: 30px;
+}
+.container {
+  width: 500px;
+}
+.middle{
+    display:inline-block;
+}
+#btns{
+  display: flex;
+  justify-content: center;
+}
+#stop {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.btn {
+  background-color: #333333;
+  color: #CCCCCC;
+}
+#sessInc, #sessDec, #breakInc, #breakDec {  
+  font-weight: bold;
+}
+#stats {
+  background-color: rgb(150,150,150,0.8);
+  width: 220px;
+  height: 70px;  
+  border-radius: 10px;
+  color: #000000;
+  font-size: 24px;
+  text-align: center;
+  padding-top: 18px;
+}
+#statRow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
-	#clock{
-	    color:white;
-	    font: 4em sans-serif;
-	    background: black;
-	    margin: 5px;
-	    padding: 5px;
-	    border: solid gray 2px;
-	    border-radius: 10px;
-	    width:340px;
-	    margin: auto;
-	    text-align:center;
-	 }
-	.content {
-		max-width: 500px;
-		margin: auto;
-		text-align:center;
-        }
-	.title {
-                margin-top: 60px;
-		text-align: center;
-	}
 	H1 {
 	        font-family: ‘Noto Sans TC’, sans-serif;
 		font-size: 30px;
@@ -65,102 +219,50 @@
 	.small {
 	        font-family: ‘cwTeXYen’, sans-serif;
 		width:340px;
-		margin: auto;
 		padding-top: 8px;
-		text-align: left;
 		font-size: 18px;
 	}
 
-	.btn {
-		font-size: 16px;
-	}
-
 	-->
-	 </STYLE>
-	 <script>
-	    var allowToPlayAudio = false;
-	    var btnToggleIdx = true;
-
-	    function startTime(){
-	      var today = new Date();
-	      var hh = today.getHours();
-	      var mm = today.getMinutes();
-	      var ss = today.getSeconds();
-	      hh = checkTime(hh);
-	      mm = checkTime(mm);
-	      ss = checkTime(ss);
-
-	      document.getElementById('clock').innerHTML = hh + ":" + mm + ":" + ss;
-
-	      var timeoutId = setTimeout(startTime, 500);
-	    }
-
-	    function checkTime(i){
-	      if(i < 10) {
-		i = "0" + i;
-	      }
-	      return i;
-	    }      
-
-	    function clockColorChange(trigerFrom="") {
-	      if (!btnToggleIdx && trigerFrom == 'PlayAudio') {
-		  document.getElementById('clock').style.color = 'red';
-	          var timeoutId = setTimeout(clockColorChange, 700);
-	      } else {
-		  document.getElementById('clock').style.color = 'white';
-		  window.clearTimeout(setTimeout(clockColorChange, 700));
-	      }
-	    }
-
-	    function playAudio() {
-		var audio = document.getElementById("ding");
-		if (!allowToPlayAudio) 
-		    return;
-		if(!audio) 
-		    return;  //  如果沒有按到對應的按鍵，則停止此函式
-
-		audio.play();       //  播放元素的音效
-		clockColorChange('PlayAudio');
-
-	        var timeoutId = setTimeout(playAudio, 60000);
-	    }
-
-	    function btnToggle() {
-		var btn = document.getElementById("btn1");
-		var audio = document.getElementById("ding");
-
-		if (btnToggleIdx == true) {
-		    audio.muted = false;
-		    btnToggleIdx = false;
-		    btn.style.color = 'grey';
-		    allowToPlayAudio = true;
-		    playAudio();
-		    btn.innerHTML = '-- 結束提醒 --';
-		} else  {
-		    audio.muted = true;
-		    btnToggleIdx = true;
-		    btn.disabled = false;
-		    btn.style.color = 'black';
-		    btn.innerHTML = '-- 開始禱告 --';
-		}
-	    }
-
-	  </script>
+	</STYLE>
     </head>
-  <body onload="startTime()">
-    <div class="wrapper">
-	<div class="content">
-	    <div class="title"><H1>RPG 禱告-時間提醒工具</H1></div>
-	    <div id="clock"></div>
-	    <p class="small">功能說明：<br/>每過一分鐘鳴鐘一次提醒禱告者來調整自己的禱告時長。</p>
-	    <div class="title"><button type="button" class="btn" onClick="btnToggle();" id="btn1">-- 開始禱告 --</button></div>
-	</div>
+    <body>
+<div class="pomodoro">
+
+  <div class="row" id="statRow">
+    <div id="stats"></div>
+  </div>
+
+  <div class="row">
+      <div class="row"><p>設定幾分鐘提醒一次？<p></div>
+      <div class="row counter">
+        <div class="col-md-2">
+          <button class="btn btn-default" id="sessDec">-</button>        
+        </div>
+        <div class="col-md-2">
+          <div class="btn btn-default btn-lg" id="session"></div>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-default" id="sessInc">+</button>
+        </div>
+      </div>
+  </div>
+    
+  <div id="clock" class="row">
+    <div class="timer"><div class="middle"></div></div>
+  </div>
+  <div class="container">
+    <div class="row" id="btns">
+      <button class="btn btn-default btn-lg" id="start">開始</button>
+      <button class="btn btn-default btn-lg" id="stop">停止</button>
+      <button class="btn btn-default btn-lg" id="clear">清除</button>
     </div>
+  </div>
+     
+</div>
     <audio id="ding" muted>
         <source src="ding.mp3" type="audio/mpeg">
     </audio>
-    <footer class="footer">
-	Copyright © 2021 ciwasiban 版權所有
-    </footer>
-  </body>
+    	
+    </body>
 </html>
