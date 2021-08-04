@@ -247,6 +247,7 @@ p {
           <button class="btn btn-default" id="sessDec">-</button>        
         </div>
         <div class="col-md-2">
+	  <span class="txt-sec">&nbsp;&nbsp;&nbsp;</span>
           <div class="btn btn-default btn-lg" id="session"></div>
 	  <span class="txt-sec">&nbsp;秒</span>
         </div>
