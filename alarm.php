@@ -9,7 +9,7 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
   var audioPlayStatus = 0;
-  var countS = 1;
+  var countS = 60;
   $("#session").html(countS);
   var countB = 1;
   $("#break").html(countB);
@@ -44,15 +44,20 @@
   $("#sessInc").on("click", function(){
     if ($("#session").html() > 0){
       countS = parseInt($("#session").html());
-      countS+=1;
+      countS+=15;
       $("#session").html(countS);
       //clock.setTime(countS*60);
+      console.log(countS);
     }
   });
   $("#sessDec").on("click", function(){
     if ($("#session").html() > 1){
       countS = parseInt($("#session").html());
-      countS-=1;
+      countS-=15;
+      if (countS <= 0) {
+	  countS = 15;
+      }
+      console.log(countS);
       $("#session").html(countS);
       //clock.setTime(countS*60);
     }
@@ -114,7 +119,7 @@
 		    return;
 		}
 
-	        var timeoutId = setTimeout(playAudio, countS * 1000 * 60);
+	        var timeoutId = setTimeout(playAudio, countS * 1000);
 
 	    }
 /** my alarm End **/
@@ -234,7 +239,7 @@ p {
   </div>
 
   <div class="row">
-      <div class="row"><p>設定幾分鐘提醒一次？<p></div>
+      <div class="row"><p>設定幾秒鐘提醒一次？<p></div>
       <div class="row counter">
         <div class="col-md-2">
           <button class="btn btn-default" id="sessDec">-</button>        
