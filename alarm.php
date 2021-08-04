@@ -211,6 +211,11 @@ p {
   justify-content: center;
   margin-bottom: 20px;
 }
+.txt-sec {
+    font-size: 1.2em;
+    font-weight: 900;
+    margin-bottom: -20px;
+}
 
 	H1 {
 	        font-family: ‘Noto Sans TC’, sans-serif;
@@ -243,6 +248,7 @@ p {
         </div>
         <div class="col-md-2">
           <div class="btn btn-default btn-lg" id="session"></div>
+	  <span class="txt-sec">&nbsp;秒</span>
         </div>
         <div class="col-md-2">
           <button class="btn btn-default" id="sessInc">+</button>
