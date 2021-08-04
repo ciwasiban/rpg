@@ -47,7 +47,6 @@
       countS+=15;
       $("#session").html(countS);
       //clock.setTime(countS*60);
-      console.log(countS);
     }
   });
   $("#sessDec").on("click", function(){
@@ -57,7 +56,6 @@
       if (countS <= 0) {
 	  countS = 15;
       }
-      console.log(countS);
       $("#session").html(countS);
       //clock.setTime(countS*60);
     }
@@ -109,7 +107,6 @@
 /** my alarm **/
 	    function playAudio() {
 		var audio = document.getElementById("ding");
-		console.log(audioPlayStatus);
                 if (audioPlayStatus == 1) {
 		    audio.muted = false;
 		    audio.play();       //  播放元素的音效
