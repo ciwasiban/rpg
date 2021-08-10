@@ -217,6 +217,22 @@ p {
     margin-bottom: -20px;
 }
 
+#bug-report {
+    background-color: rgb(200,200,200, 0.8);
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    padding-top: 10px;
+    position: fixed;
+    bottom: 4px;
+    right: 20px;
+}
+
+#bug-report a {
+   font-size: 16px;
+   color: black;
+}
+
 	H1 {
 	        font-family: ‘Noto Sans TC’, sans-serif;
 		font-size: 30px;
@@ -241,7 +257,7 @@ p {
   </div>
 
   <div class="row">
-      <div class="row"><p>設定幾秒鐘提醒一次？<p></div>
+      <div class="row"><p>設定幾秒鐘提醒一次？</p></div>
       <div class="row counter">
         <div class="col-md-2">
           <button class="btn btn-default" id="sessDec">-</button>        
@@ -267,11 +283,13 @@ p {
       <button class="btn btn-default btn-lg" id="clear">清除</button>
     </div>
   </div>
-     
-</div>
+
     <audio id="ding" muted>
         <source src="ding.mp3" type="audio/mpeg">
     </audio>
+     
+</div>
+      <div class="row" id="bug-report"><a target="_blank" href="https://bit.ly/37vjC8e">問題回報</a></div>
     	
     </body>
 </html>
