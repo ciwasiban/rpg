@@ -10,6 +10,7 @@
 	$(document).ready(function(){
   var audioPlayStatus = 0;
   var countS = 60;
+  var timeoutId=null;
   $("#session").html(countS);
   var countB = 1;
   $("#break").html(countB);
@@ -95,6 +96,7 @@
     countLama = clock.getTime();
     posLama = $("#stats").html();
     audioPlayStatus = 0;
+    clearTimeout(timeoutId);
   });
   $("#clear").on("click", function(){
     clock.stop();
@@ -110,13 +112,14 @@
                 if (audioPlayStatus == 1) {
 		    audio.muted = false;
 		    audio.play();       //  播放元素的音效
+	            timeoutId = setTimeout(playAudio, countS * 1000);
 		    //clockColorChange('PlayAudio');
 		} else {
 		    audio.muted = true;
 		    return;
 		}
 
-	        var timeoutId = setTimeout(playAudio, countS * 1000);
+
 
 	    }
 /** my alarm End **/
