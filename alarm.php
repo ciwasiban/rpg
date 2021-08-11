@@ -11,10 +11,11 @@
   var audioPlayStatus = 0;
   var countS = 60;
   var timeoutId=null;
+  var _interval = 15;
   $("#session").html(countS);
   var countB = 1;
   $("#break").html(countB);
-  var pos = "RPG 禱告提醒時鐘";
+  var pos = "RPG 禱告提醒工具";
   var countLama;
   var posLama;
   var count;
@@ -45,7 +46,7 @@
   $("#sessInc").on("click", function(){
     if ($("#session").html() > 0){
       countS = parseInt($("#session").html());
-      countS+=15;
+      countS+=_interval;
       $("#session").html(countS);
       //clock.setTime(countS*60);
     }
@@ -53,9 +54,9 @@
   $("#sessDec").on("click", function(){
     if ($("#session").html() > 1){
       countS = parseInt($("#session").html());
-      countS-=15;
+      countS-=_interval;
       if (countS <= 0) {
-	  countS = 15;
+	  countS = _interval;
       }
       $("#session").html(countS);
       //clock.setTime(countS*60);
